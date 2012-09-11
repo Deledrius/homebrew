@@ -26,7 +26,7 @@ class Ffmpeg < Formula
   option 'with-tools', 'Enable additional FFmpeg tools'
 
   # manpages won't be built without texi2html
-  depends_on 'texi2html' => :build if MacOS.mountain_lion?
+  depends_on 'texi2html' => :build if MacOS.version >= :mountain_lion
   depends_on 'yasm' => :build
 
   depends_on 'x264' unless build.include? 'without-x264'
@@ -82,7 +82,7 @@ class Ffmpeg < Formula
     # The -mdynamic-no-pic causes build failures with leopard/powerpc
     # (32-bit, gcc 4.2) when compiling some internal libraries of ffmpeg
     # 0.10.  So, we *don't* append it to CFLAGS.
-    #ENV.append_to_cflags "-mdynamic-no-pic" if MacOS.leopard? or Hardware.is_32_bit?
+    #ENV.append_to_cflags "-mdynamic-no-pic" if MacOS.version == :leopard or Hardware.is_32_bit?
 
     system "./configure", *args
 
