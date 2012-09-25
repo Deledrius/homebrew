@@ -466,6 +466,10 @@ class << ENV
   def fortran
     fc_flag_vars = %w{FCFLAGS FFLAGS}
 
+    # superenv removes these PATHs, but this option needs them
+    # TODO fix better, probably by making a super-fc
+    ENV['PATH'] += ":#{HOMEBREW_PREFIX}/bin:/usr/local/bin"
+
     if self['FC']
       ohai "Building with an alternative Fortran compiler. This is unsupported."
       self['F77'] = self['FC'] unless self['F77']
@@ -490,7 +494,7 @@ class << ENV
         EOS
       end
 
-    elsif `/usr/bin/which gfortran`.chomp.size > 0
+    elsif `/usr/bin/which gfortran`.chuzzle
       ohai <<-EOS.undent
         Using Homebrew-provided fortran compiler.
         This may be changed by setting the FC environment variable.
