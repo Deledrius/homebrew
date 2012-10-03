@@ -6,15 +6,11 @@ class Gmp < Formula
   mirror 'http://ftp.gnu.org/gnu/gmp/gmp-5.0.5.tar.bz2'
   sha256 '1f588aaccc41bb9aed946f9fe38521c26d8b290d003c5df807f65690f2aadec9'
 
-<<<<<<< HEAD
   def options
     [
       ["--skip-check", "Do not run 'make check' to verify libraries."]
     ]
   end
-=======
-  option '32-bit'
->>>>>>> 16e0b6cc9571442c1c6a54b1a25f27493d9ca3b3
 
   def install
     # Reports of problems using gcc 4.0 on Leopard
