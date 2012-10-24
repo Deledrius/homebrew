@@ -74,6 +74,8 @@ class Qt < Formula
             "-cocoa", "-fast",
             "-platform", "macx-g++42"]
 
+    args << "-L#{MacOS.x11_prefix}/lib" << "-I#{MacOS.x11_prefix}/include" if MacOS::X11.installed?
+
     args << "-platform" << "unsupported/macx-clang" if ENV.compiler == :clang
 
     # See: https://github.com/mxcl/homebrew/issues/issue/744
